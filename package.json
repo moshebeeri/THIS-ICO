@@ -1,7 +1,7 @@
 {
   "name": "token-ico-blog-example",
   "version": "1.0.0",
-  "description": "Espeo Token and ICO example for a blog post",
+  "description": "THIS Token and ICO example for a blog post",
   "main": "index.js",
   "directories": {
     "test": "test"

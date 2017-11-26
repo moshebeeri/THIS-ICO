@@ -1,4 +1,4 @@
-const EspeoTokenIco = artifacts.require('./EspeoTokenIco.sol');
+const THISTokenIco = artifacts.require('./THISTokenIco.sol');
 
 // various test utility functions
 const transaction = (address, wei) => ({
@@ -15,7 +15,7 @@ const assertExpectedError = async (promise) => {
   } catch (error) {
     assert(error.message.indexOf('invalid opcode') >= 0, `Expected throw, but got: ${error.message}`);
   }
-}
+};
 const timeController = (() => {
 
   const addSeconds = (seconds) => new Promise((resolve, reject) =>
@@ -37,7 +37,7 @@ const timeController = (() => {
   };
 })();
 
-contract('EspeoTokenIco', accounts => {
+contract('THISTokenIco', accounts => {
 
   const fundsWallet = accounts[1];
   const buyerOneWallet = accounts[2];
@@ -48,9 +48,9 @@ contract('EspeoTokenIco', accounts => {
   const minCap = toWei(2);
   const maxCap = toWei(5);
 
-  const createToken = () => EspeoTokenIco.new(fundsWallet, timeController.currentTimestamp(), minCap, maxCap);
+  const createToken = () => THISTokenIco.new(fundsWallet, timeController.currentTimestamp(), minCap, maxCap);
 
-  // REQ001: Basic ERC20 “Espeo Token” with symbol of “ESP”, 
+  // REQ001: Basic ERC20 “THIS Token” with symbol of “ESP”,
   // 18 decimals (reflecting ether’s smallest unit - wei) 
   // and total supply of 1,000,000 units created at contract deployment 
   // and assigned to a specific wallet,
@@ -70,7 +70,7 @@ contract('EspeoTokenIco', accounts => {
   // if the goal is not met the ICO continues until the payments reach the min cap
   it('should open at startTimestamp', async () => {
     const startTimestamp = timeController.currentTimestamp() + 3600;
-    const espeoToken = await EspeoTokenIco.new(fundsWallet, startTimestamp, minCap, maxCap);
+    const espeoToken = await THISTokenIco.new(fundsWallet, startTimestamp, minCap, maxCap);
 
     // should be closed
     await assertExpectedError(espeoToken.sendTransaction(transaction(buyerOneWallet, oneEth)));
@@ -151,7 +151,7 @@ contract('EspeoTokenIco', accounts => {
   // REQ004: Tokens are going to be available for transfers only after the ICO ends,
   it('should not allow token transfers before ICO', async () => {
     const startTimestamp = timeController.currentTimestamp() + 3600;
-    const espeoToken = await EspeoTokenIco.new(fundsWallet, startTimestamp, minCap, maxCap);
+    const espeoToken = await THISTokenIco.new(fundsWallet, startTimestamp, minCap, maxCap);
 
     // should not allow token transfer before ICO
     await assertExpectedError(espeoToken.transfer(buyerTwoWallet, 1, { from: buyerOneWallet }));

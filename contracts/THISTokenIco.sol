@@ -4,18 +4,18 @@ import 'zeppelin-solidity/contracts/token/ERC20Basic.sol';
 import 'zeppelin-solidity/contracts/token/StandardToken.sol';
 
 
-contract EspeoTokenIco is StandardToken {
+contract THISTokenIco is StandardToken {
     using SafeMath for uint256;
 
-    string public name = "Espeo Token";
-    string public symbol = "ESP";
+    string public name = "THIS Token by low.la";
+    string public symbol = "THIS";
     uint256 public decimals = 18;
 
-    uint256 public totalSupply = 1000000 * (uint256(10) ** decimals);
+    uint256 public totalSupply = 10000000 * (uint256(10) ** decimals);
     uint256 public totalRaised; // total ether raised (in wei)
 
     uint256 public startTimestamp; // timestamp after which ICO will start
-    uint256 public durationSeconds = 4 * 7 * 24 * 60 * 60; // 4 weeks
+    uint256 public durationSeconds = 8 * 7 * 24 * 60 * 60; // 8 weeks
 
     uint256 public minCap; // the ICO ether goal (in wei)
     uint256 public maxCap; // the ICO ether max cap (in wei)
@@ -26,7 +26,7 @@ contract EspeoTokenIco is StandardToken {
      */
     address public fundsWallet;
 
-    function EspeoTokenIco(
+    function THISTokenIco(
         address _fundsWallet,
         uint256 _startTimestamp,
         uint256 _minCap,
@@ -54,8 +54,8 @@ contract EspeoTokenIco is StandardToken {
     }
 
     function calculateTokenAmount(uint256 weiAmount) constant returns(uint256) {
-        // standard rate: 1 ETH : 50 ESP
-        uint256 tokenAmount = weiAmount.mul(50);
+        // standard rate: 1 ETH : 400 THIS
+        uint256 tokenAmount = weiAmount.mul(400);
         if (now <= startTimestamp + 7 days) {
             // +50% bonus during first week
             return tokenAmount.mul(150).div(100);
