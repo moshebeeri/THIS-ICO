@@ -1,6 +1,6 @@
 pragma solidity ^0.4.15;
 
-import 'contracts/EspeoTokenIco.sol';
+import 'contracts/THISTokenIco.sol';
 
 
 contract Factory {
@@ -11,7 +11,7 @@ contract Factory {
         uint256 _minCapEth,
         uint256 _maxCapEth) returns(address created) 
     {
-        return new EspeoTokenIco(
+        return new THISTokenIco(
             _fundsWallet,
             _startTimestamp,
             _minCapEth * 1 ether,
